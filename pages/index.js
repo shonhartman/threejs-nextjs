@@ -1,8 +1,33 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import * as THREE from 'three';
 
 export default function Home() {
+  // SCENE
+  const scene = new THREE.Scene();
+
+  // OBJECT
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
+  const material = new THREE.MeshBasicMaterial({ color: "red" });
+  const mesh = new THREE.Mesh(geometry, material);
+  
+  scene.add(mesh);
+
+  // SIZES
+  const sizes = {
+    width: 800,
+    height: 800
+  }
+
+  // CAMERA
+  const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
+
+  scene.add(camera);
+
+  
+  console.log('scene', scene)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,12 +38,11 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Lets make a new Three <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          Get started by making a scene{' '}
         </p>
 
         <div className={styles.grid}>
